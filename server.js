@@ -15,12 +15,6 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors(corsOptions));
-// For any routes that starts with "/api", catch 404 and forward to error handler
-app.use("/api/*", (req, res, next) => {
-  let err = new Error("Not Found");
-  err.status = 404;
-  next(err);
-});
 
 const usersRouter = require("./routes/users");
 app.use("/users", usersRouter);
