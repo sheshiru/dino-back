@@ -3,7 +3,7 @@ require("./config/db.connection"); // database initial setup
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const cookieParser = require("cookie-parser");
+// const cookieParser = require("cookie-parser");
 // Set "Access-Control-Allow-Origin" header
 const corsOptions = {
   origin: [process.env.frontURL],
@@ -11,13 +11,16 @@ const corsOptions = {
   optionsSuccessStatus: 200
 };
 
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors(corsOptions));
 
 const usersRouter = require("./routes/users");
 app.use("/users", usersRouter);
+
+const showsRouter = require("./routes/shows");
+app.use("/shows", showsRouter);
 
 //404 ERROR FUNCTION
 app.use((req, res, next) => {
