@@ -8,11 +8,11 @@ const cors = require("cors");
 const corsOptions = {
   origin: 'http://localhost:4200'
 };
+app.use(cors(corsOptions));
 
 // app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors(corsOptions));
 
 const usersRouter = require("./routes/users");
 app.use("/users", usersRouter);
