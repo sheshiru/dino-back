@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
                 query[i] = { $regex: regex, $options: 'i' }
             }
             console.log(query)
-            users = await User.find(query);
+            users = await User.find(query, "title");
         } else {
             users = await User.find();
         }

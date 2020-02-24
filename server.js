@@ -6,9 +6,7 @@ const cors = require("cors");
 // const cookieParser = require("cookie-parser");
 // Set "Access-Control-Allow-Origin" header
 const corsOptions = {
-  origin: [process.env.frontURL],
-  credentials: true,
-  optionsSuccessStatus: 200
+  origin: 'http://localhost:4200'
 };
 
 // app.use(cookieParser());

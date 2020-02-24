@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
+    _id: String,
     username: String,
     password: String,
     email: String,
@@ -9,7 +10,7 @@ const userSchema = new mongoose.Schema({
     lastName: String,
     reservations: [{
         idShow: String,
-        dateShow: String,
+        dateShow: Date,
         nbAdults: Number,
         nbchildren: Number
     }]
