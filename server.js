@@ -21,7 +21,7 @@ app.use("/users", usersRouter);
 const showsRouter = require("./routes/shows");
 app.use("/shows", showsRouter);
 
-const mailRouter = require("./routes/mail");
+const mailRouter = require("./routes/mail");//récupération de la requete /contact depuis le front
 app.use("/contact", mailRouter);
 
 //404 ERROR FUNCTION
