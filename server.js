@@ -1,10 +1,8 @@
 require("dotenv").config();
 require("./config/db.connection"); // database initial setup
+
 const express = require("express");
 const app = express();
-// 
-const nodemailer = require('nodemailer');
-
 const cors = require("cors");
 // const cookieParser = require("cookie-parser");
 // Set "Access-Control-Allow-Origin" header
@@ -13,13 +11,9 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-
-
 // app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-
 
 const usersRouter = require("./routes/users");
 app.use("/users", usersRouter);
@@ -36,6 +30,7 @@ app.use((req, res, next) => {
     .status(404)
     .send("This route does not exists! Check if everything is ok!");
 });
+
 //500 ERROR FUNCTION
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -59,38 +54,6 @@ app.use((err, req, res, next) => {
       );
   }
 });
-
-
-//express-mailer
-  // mailer.extend(app, {
-  //   from: req.body.email,
-  //   host: 'smtp.gmail.com',
-  //   secureConnection: true, //use SSL
-  //   port: 465,
-  //   transportMethod: 'SMTP',
-  //   auth: {
-  //     user: 'gmail.user@gmail.com',
-  //     pass: 'userpass'
-  //   }
-  // });  
-
-  // app.get('/', function (req, res, next) {
-  //   app.mailer.send('email', {
-  //     to: "virginiebouvarel@gmail.com",  
-  //     subject: "Test Email Moments d'Intelligence", 
-  //     name: req.body.name,
-  //     message: req.body.message, 
-
-  //   }, function (err) {
-  //     if (err) {
-  //       // handle error
-  //       console.log(err);
-  //       res.send('There was an error sending the email');
-  //       return;
-  //     }
-  //     res.send('Email Sent');
-  //   });
-  // });
 
 
 app.listen(process.env.PORT || 8080, () => {
