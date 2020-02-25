@@ -30,7 +30,7 @@ router.post("/", jsonParser, (req, res) => {
     res.status(200).json(user);
 })
 router.patch("/:id", jsonParser, (req, res) => {
-    User.findOneAndUpdate({ _id: req.params.id }, req.body)
+    User.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
         .then(users => res.status(200).json(users))
         .catch(error => console.log(error));
 })

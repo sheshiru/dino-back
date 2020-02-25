@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const showSchema = new mongoose.Schema({
-    _id: String,
     title: String,
+    active: Boolean,
     duration: Number,
     place: [String],
     pictures: [String],
