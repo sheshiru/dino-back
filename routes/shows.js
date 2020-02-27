@@ -1,45 +1,15 @@
 const router = require("express").Router();
-const Show = require("../models/show");
 const jsonParser = require("body-parser").json();
+const showCtrl = require("../controllers/shows");
 
-router.get("/", async (req, res) => {
-  try {
-    let shows;
-    let query = {};
+router.get("/", showCtrl.listShow);
+router.get("/:id", showCtrl.getShow);
+router.post("/", jsonParser, showCtrl.createShow);
+router.patch("/:id", jsonParser, showCtrl.updateShow);
+router.delete("/:id", showCtrl.deleteShow);
 
-    if (Object.values(req.query).length > 0) {
-      for (let i in req.query) {
-        regex = new RegExp(req.query[i]);
-        query[i] = { $regex: regex, $options: "i" };
-      }
-      shows = await Show.find(query, "title");
-    } else {
-      shows = await Show.find();
-    }
-    res.json(shows);
-  } catch (err) {
-    throw err;
-  }
-});
-router.get("/:id", (req, res) => {
-  Show.findOne({ _id: req.params.id })
-    .then(shows => res.status(200).json(shows))
-    .catch(error => console.log(error));
-});
-router.post("/", jsonParser, (req, res) => {
-  let show = new Show(req.body);
-  show.save();
-  res.status(200).json(show);
-});
-router.patch("/:id", jsonParser, (req, res) => {
-  Show.findOneAndUpdate({ _id: req.params.id }, req.body)
-    .then(shows => res.status(200).json(shows))
-    .catch(error => console.log(error));
-});
-router.delete("/:id", (req, res) => {
-  Show.findOneAndDelete({ _id: req.params.id })
-    .then(shows => res.status(200).json(shows))
-    .catch(error => console.log(error));
-});
+router.patch("/add-date/:id", jsonParser, showCtrl.addDate);
+router.patch("/del-date/:id", jsonParser, showCtrl.delDate);
+router.patch("/add-resa/:id", jsonParser, showCtrl.addResa);
 
 module.exports = router;
