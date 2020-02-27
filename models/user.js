@@ -9,7 +9,11 @@ const userSchema = new mongoose.Schema({
   lastName: String,
   reservations: [
     {
+<<<<<<< HEAD
       idDateShow: String,
+=======
+      idDate: String,
+>>>>>>> dev-back-lastday2
       nbAdults: Number,
       nbchildren: Number
     }
