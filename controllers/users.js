@@ -38,4 +38,7 @@ module.exports.deleteUser = (req, res) => {
         .then(users => res.status(200).json(users))
         .catch(error => console.log(error));
 }
-module.exports.addResa = async (req, res) => { }
+module.exports.addResa = async (req, res) => {
+    console.log(req.body);
+    
+}
