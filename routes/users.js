@@ -7,6 +7,6 @@ router.get("/:id", showCtrl.getUser);
 router.post("/", jsonParser, showCtrl.createUser);
 router.patch("/:id", jsonParser, showCtrl.updateUser);
 router.delete("/:id", showCtrl.deleteUser);
-router.patch("/add-resa/:id", jsonParser, showCtrl.addResa);
+router.post("/add-resa", jsonParser, showCtrl.addResa);
 
 module.exports = router;

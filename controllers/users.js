@@ -39,6 +39,6 @@ module.exports.deleteUser = (req, res) => {
         .catch(error => console.log(error));
 }
 module.exports.addResa = async (req, res) => {
-    console.log(req.body.user);
+    console.log(req.body);
     
 }
