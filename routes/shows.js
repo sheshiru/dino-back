@@ -3,21 +3,23 @@ const Show = require("../models/show");
 const jsonParser = require("body-parser").json();
 
 router.get("/", async (req, res) => {
-    try {
-        let shows;
-        let query = {}
-        if (req.query) {
-            for (let i in req.query) {
-                regex = new RegExp(req.query[i])
-                query[i] = { $regex: regex, $options: 'i' }
-            }
-            shows = await Show.find(query, 'title');
-        } else {
-            shows = await Show.find();
-        }
-        res.json(shows);
-    } catch (err) { throw err }
+  try {
+    let shows;
+    let query = {};
 
+    if (Object.values(req.query).length > 0) {
+      for (let i in req.query) {
+        regex = new RegExp(req.query[i]);
+        query[i] = { $regex: regex, $options: "i" };
+      }
+      shows = await Show.find(query, "title");
+    } else {
+      shows = await Show.find();
+    }
+    res.json(shows);
+  } catch (err) {
+    throw err;
+  }
 });
 router.get("/:id", (req, res) => {
   Show.findOne({ _id: req.params.id })
