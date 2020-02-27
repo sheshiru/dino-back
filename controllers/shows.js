@@ -59,4 +59,3 @@ module.exports.delDate = (req, res) => {
         }
     )
 }
-module.exports.addResa = async (req, res) => {}
