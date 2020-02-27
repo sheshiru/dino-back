@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const showSchema = new mongoose.Schema({
   title: String,
+  active: Boolean,
   duration: Number,
   place: [String],
   pictures: [String],
